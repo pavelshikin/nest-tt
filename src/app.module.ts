@@ -10,6 +10,7 @@ import {RolesModule} from "./roles/roles.module"
 import {JwtRefreshTokenStrategy} from "./auth/jwt-refresh-token.strategy"
 import {PassportModule} from "@nestjs/passport"
 import {PostModule} from './post/post.module'
+import { AppController } from "./app.controller"
 
 
 @Module({
@@ -26,6 +27,7 @@ import {PostModule} from './post/post.module'
       RolesModule,
       PassportModule
    ],
+   controllers: [AppController],
    providers: [JwtRefreshTokenStrategy]
 })
 export class AppModule {
