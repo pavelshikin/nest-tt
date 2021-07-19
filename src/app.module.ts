@@ -10,7 +10,7 @@ import {RolesModule} from "./roles/roles.module"
 import {JwtRefreshTokenStrategy} from "./auth/jwt-refresh-token.strategy"
 import {PassportModule} from "@nestjs/passport"
 import {PostModule} from './post/post.module'
-import {AppController} from "./app.controller"
+import { AppController } from "./app.controller"
 
 
 @Module({
@@ -18,12 +18,7 @@ import {AppController} from "./app.controller"
       ServeStaticModule.forRoot({rootPath: path.resolve(__dirname, 'static')}),
       MongooseModule.forRoot((
         process.env.MONGODB_STORE_URI ||
-        'mongodb+srv://admin:eE6gvSCDFnXhyv7S@cluster0.enp62.mongodb.net/music-platform?retryWrites=true&w=majority'), {
-         cors: {
-            origin: 'https://techno-train-client.vercel.app/',
-            credentials: true
-         }
-      }),
+        'mongodb+srv://admin:eE6gvSCDFnXhyv7S@cluster0.enp62.mongodb.net/music-platform?retryWrites=true&w=majority')),
       TrackModule,
       PostModule,
       FileModule,
