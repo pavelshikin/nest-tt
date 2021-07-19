@@ -10,7 +10,7 @@ const start = async () => {
       const app = await NestFactory.create(AppModule)
 
       app.use(cookieParser())
-      app.enableCors({origin: "*", credentials: true})
+      app.enableCors({origin: "https://techno-train-client.vercel.app/", credentials: true})
       app.useGlobalPipes(new ValidationPipe())
 
       await app.listen(PORT, () => console.log(`SERVER START ON PORT: ${PORT}`))
