@@ -44,7 +44,7 @@ export class AuthService {
       const token = await this.jwtService.sign(payload)
       return {
          token: token,
-         tokenCookie: `Authentication=${token}; HttpOnly; Path=/; Max-Age=86400`
+         tokenCookie: `Authentication=${token}; HttpOnly; Path=/; Max-Age=86400; SameSite=None; Secure`
       }
    }
 
@@ -55,7 +55,7 @@ export class AuthService {
       })
       return {
          refreshToken: token,
-         refreshTokenCookie: `Refresh=${token}; HttpOnly; Path=/; Max-Age=86400`
+         refreshTokenCookie: `Refresh=${token}; HttpOnly; Path=/; Max-Age=86400; SameSite=None; Secure`
       }
    }
 

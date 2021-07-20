@@ -40,7 +40,7 @@ idea/
 .versions/
 coverage/
 www/
-dist/
+
 node_modules/
 tmp/
 temp/
