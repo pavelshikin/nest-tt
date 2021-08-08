@@ -33,7 +33,7 @@ let AuthService = class AuthService {
     async registration(userDto) {
         const candidate = await this.userService.getUserByEmail(userDto.email);
         if (candidate) {
-            throw new common_1.HttpException('Пользователь с таким email существует', common_1.HttpStatus.BAD_REQUEST);
+            throw new common_1.HttpException("Пользователь с таким email существует", common_1.HttpStatus.BAD_REQUEST);
         }
         const hashPassword = await bcrypt.hash(userDto.password, 10);
         const user = await this.userService.createUser(Object.assign(Object.assign({}, userDto), { password: hashPassword }));
@@ -52,7 +52,7 @@ let AuthService = class AuthService {
     async generateRefreshToken(user) {
         const payload = { email: user.email, _id: user._id, roles: user.roles };
         const token = await this.jwtService.sign(payload, {
-            secret: process.env.REFRESH_PRIVATE_KEY || 'REFRESH_SECRET_KEY'
+            secret: process.env.REFRESH_PRIVATE_KEY || "REFRESH_SECRET_KEY"
         });
         return {
             refreshToken: token,
@@ -66,19 +66,19 @@ let AuthService = class AuthService {
     async validateUser(userDto) {
         const user = await this.userService.getUserByEmail(userDto.email);
         if (!user) {
-            throw new common_1.UnauthorizedException({ message: 'Неверный email или пароль' });
+            throw new common_1.UnauthorizedException({ message: "Неверный email или пароль" });
         }
         const passwordEquals = await bcrypt.compare(userDto.password, user.password);
         if (user && passwordEquals) {
             return user;
         }
-        throw new common_1.UnauthorizedException({ message: 'Неверный email или пароль' });
+        throw new common_1.UnauthorizedException({ message: "Неверный email или пароль" });
     }
     static getCookiesForLogOut() {
         return [
-            'Authentication=; HttpOnly; Path=/; Max-Age=0',
-            'Refresh=; HttpOnly; Path=/; Max-Age=0',
-            'token=;  ; Path=/; Max-Age=0'
+            "Authentication=; HttpOnly; Path=/; Max-Age=0",
+            "Refresh=; HttpOnly; Path=/; Max-Age=0",
+            "token=;  ; Path=/; Max-Age=0"
         ];
     }
     async deleteRefreshToken(user) {

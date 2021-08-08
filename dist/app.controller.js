@@ -12,7 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 let AppController = class AppController {
-    constructor() { }
+    constructor() {
+    }
     get() {
         return `<div style="text-align: center">
                   <h1>Techno train API</h1>
@@ -26,7 +27,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "get", null);
 AppController = __decorate([
-    common_1.Controller('/'),
+    common_1.Controller("/"),
     __metadata("design:paramtypes", [])
 ], AppController);
 exports.AppController = AppController;
