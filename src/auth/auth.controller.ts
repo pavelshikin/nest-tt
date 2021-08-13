@@ -27,7 +27,7 @@ export class AuthController {
                      @Req() request: Request) {
     const { token, tokenCookie, refreshToken, refreshTokenCookie, userId } = await this.authService.registration(userDto);
     await this.authService.setCurrentRefreshToken(refreshToken, userDto.email);
-    request.res.setHeader("Set-Cookie", [tokenCookie, refreshTokenCookie]);
+    request.res.setHeader("Set-Cookie", [tokenCookie, refreshTokenCookie, ]);
     return { Authentication: token, Refresh: refreshToken, userId };
   }
 
