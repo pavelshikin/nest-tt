@@ -43,8 +43,8 @@ export class AuthService {
     const payload = { email: user.email, _id: user._id, roles: user.roles };
     const token = await this.jwtService.sign(payload);
     return {
-      token: 'token',
-      tokenCookie: `Authentication=${'token'};HttpOnly;Path=/;Max-Age=86400;SameSite=None;Secure`
+      token: token,
+      tokenCookie: `Authentication=${token};HttpOnly;Path=/;Max-Age=86400;SameSite=None;Secure`
     };
   }
 
@@ -54,8 +54,8 @@ export class AuthService {
       secret: process.env.REFRESH_PRIVATE_KEY || "REFRESH_SECRET_KEY"
     });
     return {
-      refreshToken: 'refresh',
-      refreshTokenCookie: `Refresh=${'token'};HttpOnly;Path=/;Max-Age=86400;SameSite=None;Secure`
+      refreshToken: token,
+      refreshTokenCookie: `Refresh=${token};HttpOnly;Path=/;Max-Age=86400;SameSite=None;Secure`
     };
   }
 
