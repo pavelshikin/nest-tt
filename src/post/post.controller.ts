@@ -41,8 +41,7 @@ export class PostController {
       return this.postService.createCategory(name)
    }
 
-   @Roles('OWNER' || 'ADMIN')
-   @UseGuards(RolesGuard)
+   @UseGuards(JwtAuthGuard)
    @Delete(':id')
    delete(@Param('id') id: ObjectId) {
       return this.postService.deletePost(id)
