@@ -46,7 +46,7 @@ let AuthService = class AuthService {
         const token = await this.jwtService.sign(payload);
         return {
             token: token,
-            tokenCookie: `Authentication=${token};Path=/;Max-Age=86400;SameSite=None;Secure`
+            tokenCookie: `Authentication=${token};HttpOnly;Path=/;Max-Age=86400;SameSite=None;Secure`
         };
     }
     async generateRefreshToken(user) {
@@ -56,7 +56,7 @@ let AuthService = class AuthService {
         });
         return {
             refreshToken: token,
-            refreshTokenCookie: `Refresh=${token};Path=/;Max-Age=86400;SameSite=None;Secure`
+            refreshTokenCookie: `Refresh=${token};HttpOnly;Path=/;Max-Age=86400;SameSite=None;Secure`
         };
     }
     async setCurrentRefreshToken(refreshToken, userEmail) {
