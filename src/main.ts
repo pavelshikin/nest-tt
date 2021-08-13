@@ -14,6 +14,7 @@ const start = async () => {
       origin: true,
       methods: "GET,HEAD,PUT,POST,DELETE,OPTIONS",
       credentials: true,
+      exposedHeaders: ["set-cookie"]
     });
     app.useGlobalPipes(new ValidationPipe());
 
