@@ -13,7 +13,7 @@ const start = async () => {
     app.enableCors({
       origin: true,
       methods: "GET,HEAD,PUT,POST,DELETE,OPTIONS",
-      credentials: true
+      credentials: true,
     });
     app.useGlobalPipes(new ValidationPipe());
 
