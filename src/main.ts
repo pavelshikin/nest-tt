@@ -12,15 +12,10 @@ const start = async () => {
     const whitelist = ['https://techno-train.netlify.app/',
       'http://shikin-links.tk/', 'https://react-zp9giu.stackblitz.io/'];
     app.enableCors({
-      origin: (origin, callback) => {
-        if(whitelist.includes(origin))
-          return callback(null, true);
-
-        callback(new Error('Not allowed by CORS'));
-      },
+      origin: "http://shikin-links.tk/",
       methods: "GET,HEAD,PUT,POST,DELETE,OPTIONS",
       credentials: true,
-      exposedHeaders: ["set-cookie"]
+      exposedHeaders: ["set-cookie"],
     });
     app.useGlobalPipes(new ValidationPipe());
 
