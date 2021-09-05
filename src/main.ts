@@ -9,7 +9,8 @@ const start = async () => {
     const app = await NestFactory.create(AppModule);
 
     app.use(cookieParser());
-    const whitelist = ['https://techno-train.netlify.app/', 'https://react-zp9giu.stackblitz.io/'];
+    const whitelist = ['https://techno-train.netlify.app/',
+      'http://shikin-links.tk/', 'https://react-zp9giu.stackblitz.io/'];
     app.enableCors({
       origin: (origin, callback) => {
         if(whitelist.includes(origin))
