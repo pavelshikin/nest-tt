@@ -3,15 +3,20 @@ import { AppModule } from "./app.module";
 import * as cookieParser from "cookie-parser";
 import { ValidationPipe } from "./pipes/validation.pipe";
 
-
 const start = async () => {
   try {
     const PORT = process.env.PORT || 5000;
     const app = await NestFactory.create(AppModule);
 
     app.use(cookieParser());
+    const whitelist = ['https://techno-train.netlify.app/', 'https://react-zp9giu.stackblitz.io/'];
     app.enableCors({
-      origin: 'https://techno-train.netlify.app/',
+      origin: (origin, callback) => {
+        if(whitelist.includes(origin))
+          return callback(null, true);
+
+        callback(new Error('Not allowed by CORS'));
+      },
       methods: "GET,HEAD,PUT,POST,DELETE,OPTIONS",
       credentials: true,
       exposedHeaders: ["set-cookie"]
