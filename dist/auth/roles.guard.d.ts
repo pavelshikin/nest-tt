@@ -1,7 +1,7 @@
-import { CanActivate, ExecutionContext } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { Observable } from 'rxjs';
-import { Reflector } from '@nestjs/core';
+import { CanActivate, ExecutionContext } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import { Observable } from "rxjs";
+import { Reflector } from "@nestjs/core";
 export declare class RolesGuard implements CanActivate {
     private jwtService;
     private reflector;

@@ -1,7 +1,7 @@
-import { CreateUserDto } from '../users/dto/create-user.dto';
-import { AuthService } from './auth.service';
-import { Request } from 'express';
-import RequestWithUser from './requestWithUser.interface';
+import { CreateUserDto } from "../users/dto/create-user.dto";
+import { AuthService } from "./auth.service";
+import { Request } from "express";
+import RequestWithUser from "./requestWithUser.interface";
 export declare class AuthController {
     private authService;
     constructor(authService: AuthService);

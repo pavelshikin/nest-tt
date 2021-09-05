@@ -14,13 +14,13 @@ const class_validator_1 = require("class-validator");
 class CreateUserDto {
 }
 __decorate([
-    class_validator_1.IsNotEmpty({ message: 'Не может быть пустым' }),
-    class_validator_1.IsEmail({}, { message: 'Некорректный email' }),
+    class_validator_1.IsNotEmpty({ message: "Не может быть пустым" }),
+    class_validator_1.IsEmail({}, { message: "Некорректный email" }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "email", void 0);
 __decorate([
-    class_validator_1.IsString({ message: 'Должно быть строкой' }),
-    class_validator_1.Length(6, 16, { message: 'Не меньше 6 и не более 16' }),
+    class_validator_1.IsString({ message: "Должно быть строкой" }),
+    class_validator_1.Length(6, 16, { message: "Не меньше 6 и не более 16" }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password", void 0);
 exports.CreateUserDto = CreateUserDto;

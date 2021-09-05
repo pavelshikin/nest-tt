@@ -20,7 +20,6 @@ let RolesGuard = class RolesGuard {
         this.reflector = reflector;
     }
     canActivate(context) {
-        var _a;
         try {
             const requiredRoles = this.reflector.getAllAndOverride(roles_auth_decorator_1.ROLES_KEY, [
                 context.getHandler(),
@@ -31,16 +30,16 @@ let RolesGuard = class RolesGuard {
             }
             let token;
             const req = context.switchToHttp().getRequest();
-            token = (_a = req.cookies) === null || _a === void 0 ? void 0 : _a.Authentication;
+            token = req.headers["authorization"].split(" ")[1];
             if (!token) {
-                throw new common_1.UnauthorizedException({ message: 'Пользователь не авторизован' });
+                throw new common_1.UnauthorizedException({ message: "Пользователь не авторизован" });
             }
             const user = this.jwtService.verify(token);
             req.user = user;
             return user.roles.some(role => requiredRoles.includes(role));
         }
         catch (e) {
-            throw new common_1.HttpException('Нет доступа', common_1.HttpStatus.FORBIDDEN);
+            throw new common_1.HttpException("Нет доступа", common_1.HttpStatus.FORBIDDEN);
         }
     }
 };

@@ -14,22 +14,18 @@ const common_1 = require("@nestjs/common");
 const passport_jwt_1 = require("passport-jwt");
 const passport_1 = require("@nestjs/passport");
 const users_service_1 = require("../users/users.service");
-let JwtRefreshTokenStrategy = class JwtRefreshTokenStrategy extends passport_1.PassportStrategy(passport_jwt_1.Strategy, 'jwt-refresh-token') {
+let JwtRefreshTokenStrategy = class JwtRefreshTokenStrategy extends passport_1.PassportStrategy(passport_jwt_1.Strategy, "jwt-refresh-token") {
     constructor(userService) {
         super({
-            jwtFromRequest: passport_jwt_1.ExtractJwt.fromExtractors([(request) => {
-                    var _a;
-                    return (_a = request === null || request === void 0 ? void 0 : request.cookies) === null || _a === void 0 ? void 0 : _a.Authentication;
-                }]),
+            jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
             passReqToCallback: true,
-            secretOrKey: process.env.PRIVATE_KEY || 'SECRET'
+            secretOrKey: process.env.PRIVATE_KEY || "SECRET"
         });
         this.userService = userService;
     }
     async validate(request, { _id }) {
-        var _a;
-        const refreshToken = (_a = request.cookies) === null || _a === void 0 ? void 0 : _a.Refresh;
+        const refreshToken = String(request.headers['refresh']);
         const user = await this.userService.getUserIfRefreshTokenMatches(refreshToken, _id);
         return user;
     }

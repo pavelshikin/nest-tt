@@ -17,12 +17,11 @@ let JwtAuthGuard = class JwtAuthGuard {
         this.jwtService = jwtService;
     }
     canActivate(context) {
-        var _a;
         const req = context.switchToHttp().getRequest();
         try {
             let token;
-            token = (_a = req.cookies) === null || _a === void 0 ? void 0 : _a.Authentication;
-            console.log(req.cookies);
+            console.log(req.headers);
+            token = req.headers["authorization"].split(" ")[1];
             if (!token) {
                 throw new common_1.UnauthorizedException({ message: "Пользователь не авторизован" });
             }

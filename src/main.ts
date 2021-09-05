@@ -11,7 +11,7 @@ const start = async () => {
 
     app.use(cookieParser());
     app.enableCors({
-      origin: true,
+      origin: 'https://techno-train.netlify.app/',
       methods: "GET,HEAD,PUT,POST,DELETE,OPTIONS",
       credentials: true,
       exposedHeaders: ["set-cookie"]

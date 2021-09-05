@@ -11,8 +11,9 @@ const start = async () => {
         app.use(cookieParser());
         app.enableCors({
             origin: true,
-            methods: 'GET,HEAD,PUT,POST,DELETE,OPTIONS',
-            credentials: true
+            methods: "GET,HEAD,PUT,POST,DELETE,OPTIONS",
+            credentials: true,
+            exposedHeaders: ["set-cookie"]
         });
         app.useGlobalPipes(new validation_pipe_1.ValidationPipe());
         await app.listen(PORT, () => console.log(`SERVER START ON PORT: ${PORT}`));

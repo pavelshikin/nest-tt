@@ -25,28 +25,28 @@ let AuthController = class AuthController {
     async login(userDto, request) {
         const { token, tokenCookie, refreshToken, refreshTokenCookie, userId } = await this.authService.login(userDto);
         await this.authService.setCurrentRefreshToken(refreshToken, userDto.email);
-        request.res.setHeader('Set-Cookie', [tokenCookie, refreshTokenCookie]);
+        request.res.setHeader("Set-Cookie", [tokenCookie, refreshTokenCookie]);
         return { Authentication: token, Refresh: refreshToken, userId };
     }
     async registration(userDto, request) {
         const { token, tokenCookie, refreshToken, refreshTokenCookie, userId } = await this.authService.registration(userDto);
         await this.authService.setCurrentRefreshToken(refreshToken, userDto.email);
-        request.res.setHeader('Set-Cookie', [tokenCookie, refreshTokenCookie]);
+        request.res.setHeader("Set-Cookie", [tokenCookie, refreshTokenCookie,]);
         return { Authentication: token, Refresh: refreshToken, userId };
     }
     async refresh(request) {
         const { token, tokenCookie } = await this.authService.getCookieWithJwtAccessToken(request.user);
-        request.res.setHeader('Set-Cookie', tokenCookie);
+        request.res.setHeader("Set-Cookie", tokenCookie);
         return token;
     }
     async logOut(request) {
         await this.authService.deleteRefreshToken(request.user);
-        request.res.setHeader('Set-Cookie', auth_service_1.AuthService.getCookiesForLogOut());
+        request.res.setHeader("Set-Cookie", auth_service_1.AuthService.getCookiesForLogOut());
     }
 };
 __decorate([
     common_1.HttpCode(200),
-    common_1.Post('/login'),
+    common_1.Post("/login"),
     __param(0, common_1.Body()),
     __param(1, common_1.Req()),
     __metadata("design:type", Function),
@@ -54,7 +54,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
 __decorate([
-    common_1.Post('/registration'),
+    common_1.Post("/registration"),
     __param(0, common_1.Body()),
     __param(1, common_1.Req()),
     __metadata("design:type", Function),
@@ -63,7 +63,7 @@ __decorate([
 ], AuthController.prototype, "registration", null);
 __decorate([
     common_1.UseGuards(jwt_refresh_quard_1.default),
-    common_1.Get('/refresh'),
+    common_1.Get("/refresh"),
     __param(0, common_1.Req()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -71,7 +71,7 @@ __decorate([
 ], AuthController.prototype, "refresh", null);
 __decorate([
     common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Post('/logout'),
+    common_1.Post("/logout"),
     common_1.HttpCode(200),
     __param(0, common_1.Req()),
     __metadata("design:type", Function),
@@ -79,7 +79,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "logOut", null);
 AuthController = __decorate([
-    common_1.Controller('auth'),
+    common_1.Controller("auth"),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
 ], AuthController);
 exports.AuthController = AuthController;
