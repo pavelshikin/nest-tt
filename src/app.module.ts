@@ -16,9 +16,7 @@ import { AppController } from "./app.controller"
 @Module({
    imports: [
       ServeStaticModule.forRoot({rootPath: path.resolve(__dirname, 'static')}),
-      MongooseModule.forRoot((
-        process.env.MONGODB_STORE_URI ||
-        'mongodb+srv://admin:eE6gvSCDFnXhyv7S@cluster0.enp62.mongodb.net/music-platform?retryWrites=true&w=majority')),
+      MongooseModule.forRoot(process.env.MONGODB_STORE_URI),
       TrackModule,
       PostModule,
       FileModule,
